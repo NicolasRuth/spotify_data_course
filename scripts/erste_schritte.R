@@ -20,7 +20,7 @@ fuenf * 4
 
 # R nutzt sogenannte Vektoren. Vektoren sind eine Sammlung an Werten
 
-mein_vektor <- c(5,10,15,20,25) # c steht für concatenate - verknüpfen
+mein_vektor <- c(5, 10, 15, 20, 25) # c steht für concatenate - verknüpfen
 
 mein_vektor * fuenf
 
@@ -47,12 +47,15 @@ mittelwert(mein_vektor)
 
 mean(mein_vektor)
 
-# Probiert andere Funktionen aus: table(), median(), sort(), max(), min(), sqrt(),
+# Probiert andere Funktionen aus: table(mein_vektor), median(mein_vektor),
+# max(mein_vektor), min(mein_vektor), sqrt(mein_vektor)...
 
 # Logical operators helfen uns Regeln zu formulieren
+# Sogenannte Booleans sagen uns ob etwas True oder False ist.
 
-mein_vektor >= 15
+mein_vektor == 15
 
 mean(mein_vektor) == 15
 
 sum(mein_vektor) != 75
+
