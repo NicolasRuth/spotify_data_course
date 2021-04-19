@@ -24,6 +24,8 @@ mein_vektor <- c(5, 10, 15, 20, 25) # c steht für concatenate - verknüpfen
 
 mein_vektor * fuenf
 
+mein_ergebnis <- mein_vektor * fuenf
+
 # Um richtig zu programmieren, benötigen wir Funktionen. R hat eine ganze Menge
 # Funktionen! Und noch mehr durch zahlreiche Packages
 
