@@ -41,10 +41,18 @@ qplot(popularity, danceability,
 
 qplot(popularity, danceability,
       data = spotify_data,
-      geom = c("point", "smooth"),
-      method = "lm")
+      geom = c("point", "smooth"))
 
 qplot(speechiness, genre1,
       data = spotify_data,
-      geom = c("boxplot"),
+      geom = "boxplot",
       color = as.factor(year))
+
+# Statistische Analysen
+
+chisq.test(spotify_data$mode, spotify_data$explicit)
+table(spotify_data$mode, spotify_data$explicit)
+
+cor.test(spotify_data$energy, spotify_data$liveness)
+
+t.test(popularity ~ explicit, data = spotify_data)
