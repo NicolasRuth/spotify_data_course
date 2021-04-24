@@ -20,7 +20,10 @@ hist(spotify_data$energy) # base R
 
 qplot(spotify_data$valence, geom = "density")
 
-# Erste graphische Analysen
+# Die einzelnen Audio Features von Spotify sind hier beschrieben:
+# https://developer.spotify.com/documentation/web-api/reference/#endpoint-get-audio-features
+
+# Erste grafische Analysen
 
 qplot(as.factor(year), duration_ms/1000,
       data = spotify_data,
@@ -28,20 +31,21 @@ qplot(as.factor(year), duration_ms/1000,
 
 qplot(explicit,
       data = spotify_data,
-      geom = "bar",
-      color = as.factor(explicit))
+      color = as.factor(explicit),
+      geom = "bar")
 
 qplot(as.factor(year), loudness,
+      color = as.factor(year),
       data = spotify_data,
-      geom = "boxplot",
-      color = as.factor(year))
+      geom = "boxplot")
 
 qplot(popularity, danceability,
       data = spotify_data)
 
 qplot(popularity, danceability,
       data = spotify_data,
-      geom = c("point", "smooth"))
+      geom = c("point", "smooth"),
+      method = "lm")
 
 qplot(speechiness, genre1,
       data = spotify_data,
@@ -56,3 +60,8 @@ table(spotify_data$mode, spotify_data$explicit)
 cor.test(spotify_data$energy, spotify_data$liveness)
 
 t.test(popularity ~ explicit, data = spotify_data)
+
+# Hilfreiche Dateien sind die RStudio Cheatsheets
+# Base: https://www.rstudio.com/wp-content/uploads/2016/05/base-r.pdf
+# GGPlot2: https://www.rstudio.com/wp-content/uploads/2015/05/ggplot2-cheatsheet.pdf
+# RStudio: https://www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf

@@ -55,7 +55,7 @@ mean(mein_vektor)
 # Logical operators helfen uns Regeln zu formulieren
 # Sogenannte Booleans sagen uns ob etwas True oder False ist.
 
-mein_vektor == 15
+mein_vektor == 5
 
 mean(mein_vektor) == 15
 

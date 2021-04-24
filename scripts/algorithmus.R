@@ -4,7 +4,7 @@
 
 mein_tempo_minimum <- 120 # ab 120 bpm mag ich es
 
-# Ich stehe auf energiegeladene Musik
+# Ich habe drei Genres, die ich besonders mag
 
 mein_genre1 <- as.character("dance pop")
 mein_genre2 <- as.character("contemporary country")
@@ -18,17 +18,17 @@ mein_dance <- 0.65 # es sollte mindestens eine Tanzbarkeit von 65 haben!
 
 mein_db <- -7
 
-# Ich finde es besser, wenn der Text überwiegend positiv ist
+# Ich finde es besser, wenn der Songüberwiegend positiv ist
 
 mein_value <- 0.50
 
 # Jetzt nehmen wir diese Werte und nutzen sie als Regeln in unserem Algorithmus.
-# Idealerweise kommt am Ende ein Wert raus, der mir sagt wie sehr mir der Song
-# gefallen wird - sagen wir ein Wert zwisch 0 und 1 wobei 1 = gefällt mir am besten.
+# Idealerweise kommt am Ende ein Wert raus, der mir sagt, wie sehr mir der Song
+# gefallen wird - sagen wir ein Wert zwisch 0 und 1, wobei 1 = gefällt mir am besten.
 
 nick_mag <- function(songtitel) {
   auswahl <- spotify_data[spotify_data$title == songtitel, ]
-  punkte <-  0
+  punkte <- 0
   if(auswahl$tempo >= mein_tempo_minimum) {punkte <- punkte + 1}
   if(auswahl$genre1 == mein_genre1 |
      auswahl$genre1 == mein_genre2 |
@@ -41,13 +41,13 @@ nick_mag <- function(songtitel) {
           songtitel, ergebnis)
   }
 
-# Testen wir mit dem Algorithmus, ob ich "3" von Britney Spears mag
+# Testen wir mit dem Algorithmus, ob ich "Pumped Up Kicks" mag
 nick_mag("Pumped Up Kicks")
 
 # Schauen wir uns die Werte an, passt das?
 spotify_data[spotify_data$title == as.character("Pumped Up Kicks"), ]
 
-# Und im Vergleich "Hard" von Rihanna.
+# Und im Vergleich "Humble And Kind" von Tim McGraw.
 nick_mag("Humble And Kind")
 
 spotify_data[spotify_data$title == as.character("Humble And Kind"), ]
