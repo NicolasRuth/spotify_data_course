@@ -1,10 +1,10 @@
 install.packages("tidyverse") # Installiert tidyverse (Eine Sammlung vieler
-                              # nützlicher packages für Datenaufbereitung, Grafikgestaltung etc.)
+                              # nützlicher packages für Datenaufbereitung,
+                              # Grafikgestaltung etc.)
 
 library(tidyverse) # Lädt tidyverse
-library(ggplot2)
 
-spotify_data <- read.csv("./data/charts.csv") # lädt die Datei in einen Datensatz
+spotify_data <- read.csv("./data/charts.csv")[,2:25] # lädt die Datei in einen Datensatz
 
 # Datensatz inspizieren
 
@@ -25,32 +25,30 @@ qplot(spotify_data$valence, geom = "density")
 
 # Erste grafische Analysen
 
-qplot(as.factor(year), duration_ms/1000,
-      data = spotify_data,
-      color = as.factor(year))
-
 qplot(explicit,
       data = spotify_data,
-      color = as.factor(explicit),
+      fill = explicit,
       geom = "bar")
+
+qplot(energy, liveness,
+      data = spotify_data)
+
+qplot(energy, liveness,
+      data = spotify_data,
+      geom = c("point", "smooth"),
+      method = "lm")
+
+qplot(as.factor(year), duration_ms/1000,
+      data = spotify_data,
+      color = as.factor(year),
+      ylab = "Duration",
+      xlab = "Year",
+      geom = "boxplot") # alternative Darstellung (geom): Boxplot
 
 qplot(as.factor(year), loudness,
       color = as.factor(year),
       data = spotify_data,
       geom = "boxplot")
-
-qplot(popularity, danceability,
-      data = spotify_data)
-
-qplot(popularity, danceability,
-      data = spotify_data,
-      geom = c("point", "smooth"),
-      method = "lm")
-
-qplot(speechiness, genre1,
-      data = spotify_data,
-      geom = "boxplot",
-      color = as.factor(year))
 
 # Statistische Analysen
 
@@ -59,9 +57,10 @@ table(spotify_data$mode, spotify_data$explicit)
 
 cor.test(spotify_data$energy, spotify_data$liveness)
 
-t.test(popularity ~ explicit, data = spotify_data)
+t.test(valence ~ explicit, data = spotify_data)
 
 # Hilfreiche Dateien sind die RStudio Cheatsheets
 # Base: https://www.rstudio.com/wp-content/uploads/2016/05/base-r.pdf
 # GGPlot2: https://www.rstudio.com/wp-content/uploads/2015/05/ggplot2-cheatsheet.pdf
 # RStudio: https://www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf
+

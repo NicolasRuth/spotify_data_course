@@ -1,11 +1,11 @@
-# Daten mittels der SPotify Entwickler API (application programming interface),
+# Daten mittels der Spotify Entwickler API (application programming interface),
 # also der Anwendungsschnittstelle beziehen.
 
 ### Packages ###
 
 # Hierzu benötigen wir einige packages, Software-Erweiterungen für R.
 
-library(tidyverse) # fzur Datenaufbereitung
+library(tidyverse) # zur Datenaufbereitung
 if (!require(spotifyr)){
   install.packages("spotifyr", devtools::install_github("charlie86/spotifyr"))
 } #
