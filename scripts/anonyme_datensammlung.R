@@ -1,11 +1,11 @@
-# Daten mittels der SPotify Entwickler API (application programming interface),
+# Daten mittels der Spotify Entwickler API (application programming interface),
 # also der Anwendungsschnittstelle beziehen.
 
 ### Packages ###
 
 # Hierzu benötigen wir einige packages, Software-Erweiterungen für R.
 
-library(tidyverse) # fzur Datenaufbereitung
+library(tidyverse) # zur Datenaufbereitung
 if (!require(spotifyr)){
   install.packages("spotifyr", devtools::install_github("charlie86/spotifyr"))
 } #
@@ -34,7 +34,7 @@ access_token <- get_spotify_access_token(Sys.getenv("SPOTIFY_CLIENT_ID"),
 
 url <- "https://www.billboard.com/charts/year-end/"
 
-streaming_period <- c(2010:2020)
+streaming_period <- c(2010:2021)
 
 url_end <- "/hot-100-songs"
 
@@ -49,24 +49,25 @@ charts_scrapeR <- function(x) {page <- x
 
 chart_position <- page %>%
   read_html() %>%
-  html_nodes("div.ye-chart-item__rank") %>%
-  html_text()
+  html_elements(".a-font-primary-bold-l") %>%
+  html_text(trim = TRUE)
 
 # Song/Track-Titel ziehen
 
 title <- page %>%
   read_html() %>%
-  html_nodes("div.ye-chart-item__title") %>%
-  html_text()
+  html_elements("li") %>%
+  html_elements("h3") %>%
+  html_text(trim = TRUE)
 
 # Artist Namen finden
 
 artist <- page %>%
   read_html() %>%
-  html_nodes("div.ye-chart-item__artist") %>%
-  html_text()
+  html_elements(".a-font-primary-s") %>%
+  html_text(trim = TRUE)
 
-tab <- data.frame(chart_position, title, artist)
+tab <- data.frame(chart_position[3:102], title[1:100], artist[2:101])
 
 return(tab)
 }
@@ -75,19 +76,21 @@ return(tab)
 # Erscheinungsjahre ergänzt.
 
 charts_data <- map_df(all_urls, charts_scrapeR)
+colnames(charts_data) <- c("chart_position", "title", "artist")
 
 charts_data$year <- 0
 charts_data$year[1:100] <- 2010
-charts_data$year[101:199] <- 2011
-charts_data$year[200:299] <- 2012
-charts_data$year[300:399] <- 2013
-charts_data$year[400:499] <- 2014
-charts_data$year[500:599] <- 2015
-charts_data$year[600:698] <- 2016
-charts_data$year[699:798] <- 2017
-charts_data$year[799:898] <- 2018
-charts_data$year[899:998] <- 2019
-charts_data$year[999:1098] <- 2020
+charts_data$year[101:200] <- 2011
+charts_data$year[201:300] <- 2012
+charts_data$year[301:400] <- 2013
+charts_data$year[401:500] <- 2014
+charts_data$year[501:600] <- 2015
+charts_data$year[601:700] <- 2016
+charts_data$year[701:800] <- 2017
+charts_data$year[801:900] <- 2018
+charts_data$year[901:1000] <- 2019
+charts_data$year[1001:1100] <- 2020
+charts_data$year[1101:1200] <- 2021
 
 # Alle unnötigen Symbole und Satzzeichen in den Titel und Artistnamen werden gelöscht.
 
@@ -111,9 +114,9 @@ charts_data$title <- gsub("\n", " ", charts_data$title)
 charts_data$chart_position <- gsub("\n", " ", charts_data$chart_position)
 charts_data$chart_position <- as.numeric(charts_data$chart_position)
 
-# Jetzt können die tatsächlichen Audio Features von Spotify geladen werden.
+# Jetzt können die Audio Features von Spotify geladen werden.
 # Hier sind die Audio Features aufgelistet:
-# https://developer.spotify.com/documentation/web-api/reference/#object-audiofeaturesobject
+# https://developer.spotify.com/documentation/web-api/reference/#/operations/get-audio-features
 
 track_audio_features <- function(artist, title, type = "track") {
   search_results <- search_spotify(paste(artist, title), type = type)

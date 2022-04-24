@@ -55,9 +55,17 @@ mean(mein_vektor)
 # Logical operators helfen uns Regeln zu formulieren
 # Sogenannte Booleans sagen uns ob etwas True oder False ist.
 
-mein_vektor == 5
+fuenf == 5
+fuenf != 5
+fuenf <= 4
+fuenf >= 4
+
+# Was passiert, wenn wir Vektoren in Booleans nutzen?
+
+mein_vektor <= 5
 
 mean(mein_vektor) == 15
 
 sum(mein_vektor) != 75
 
+# Wichtiger erster Schritt für Anweisungen und Loops!
