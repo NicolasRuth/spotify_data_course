@@ -99,14 +99,14 @@ charts_data$artist <- gsub("&*", "", charts_data$artist)
 charts_data$artist <- gsub(",", "", charts_data$artist)
 charts_data$artist <- gsub("/", "", charts_data$artist)
 charts_data$artist <- gsub(" x ", " ", charts_data$artist)
-charts_data$artist[358] <- gsub("Tiara Thomas Or", "", charts_data$artist[358])
-charts_data$artist[429] <- "Lil Wayne"
-charts_data$artist[858] <- "Selena Gomez"
-charts_data$title[926] <- "Ransom"
-charts_data$artist[949] <- "Gucci Mane"
-charts_data$artist[956] <- "Ellie Goulding"
-charts_data$artist[1048] <- "Black Eyed Peas"
-charts_data$artist[1086] <- "Kane Brown"
+#charts_data$artist[358] <- gsub("Tiara Thomas Or", "", charts_data$artist[358])
+#charts_data$artist[429] <- "Lil Wayne"
+#charts_data$artist[858] <- "Selena Gomez"
+#charts_data$title[926] <- "Ransom"
+#charts_data$artist[949] <- "Gucci Mane"
+#charts_data$artist[956] <- "Ellie Goulding"
+#charts_data$artist[1048] <- "Black Eyed Peas"
+#charts_data$artist[1086] <- "Kane Brown"
 charts_data$artist <- gsub("\n", " ", charts_data$artist)
 charts_data$artist <- str_trim(charts_data$artist, side = "both")
 charts_data$title <- str_trim(charts_data$title, side = "both")
