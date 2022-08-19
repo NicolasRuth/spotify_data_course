@@ -4,7 +4,7 @@ install.packages("tidyverse") # Installiert tidyverse (Eine Sammlung vieler
 
 library(tidyverse) # Lädt tidyverse
 
-spotify_data <- read.csv("./data/charts.csv")[,2:25] # lädt die Datei in einen Datensatz
+spotify_data <- read.csv("./data/charts.csv")[,2:22] # lädt die Datei in einen Datensatz
 
 # Datensatz inspizieren
 
@@ -12,7 +12,8 @@ head(spotify_data)
 
 str(spotify_data)
 
-table(spotify_data$genre1)
+table(spotify_data$top_genre) # Häufigkeit der Genres
+sort(table(spotify_data$top_genre), decreasing = TRUE) # Sortiert nach Häufigkeit
 
 qplot(spotify_data$tempo) # tidyverse
 

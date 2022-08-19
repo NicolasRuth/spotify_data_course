@@ -99,14 +99,14 @@ charts_data$artist <- gsub("&*", "", charts_data$artist)
 charts_data$artist <- gsub(",", "", charts_data$artist)
 charts_data$artist <- gsub("/", "", charts_data$artist)
 charts_data$artist <- gsub(" x ", " ", charts_data$artist)
-#charts_data$artist[358] <- gsub("Tiara Thomas Or", "", charts_data$artist[358])
-#charts_data$artist[429] <- "Lil Wayne"
-#charts_data$artist[858] <- "Selena Gomez"
-#charts_data$title[926] <- "Ransom"
-#charts_data$artist[949] <- "Gucci Mane"
-#charts_data$artist[956] <- "Ellie Goulding"
-#charts_data$artist[1048] <- "Black Eyed Peas"
-#charts_data$artist[1086] <- "Kane Brown"
+charts_data$artist[359] <- gsub("Tiara Thomas Or", "", charts_data$artist[359])
+charts_data$artist[430] <- "Lil Wayne"
+charts_data$artist[860] <- "Selena Gomez"
+charts_data$title[928] <- "Ransom"
+charts_data$artist[951] <- "Gucci Mane"
+charts_data$artist[958] <- "Ellie Goulding"
+charts_data$artist[1050] <- "Black Eyed Peas"
+charts_data$artist[1088] <- "Kane Brown"
 charts_data$artist <- gsub("\n", " ", charts_data$artist)
 charts_data$artist <- str_trim(charts_data$artist, side = "both")
 charts_data$title <- str_trim(charts_data$title, side = "both")
@@ -132,12 +132,11 @@ track_audio_features <- function(artist, title, type = "track") {
 charts_af <- NULL
 
 for(i in 1:nrow(charts_data)){
-new_row <- tibble(track_audio_features(charts_data$artist[i], charts_data$title[i]))
-charts_af <- rbind(charts_af, new_row)
+  new_row <- tibble(track_audio_features(charts_data$artist[i], charts_data$title[i]))
+  charts_af <- rbind(charts_af, new_row)
 }
 
 charts <- cbind(charts_data, charts_af)
-charts <- charts[, -22]
 charts <- charts[, -(18:20)]
 charts <- charts[, -16]
 
@@ -169,25 +168,27 @@ track_info <- cbind(track_info, artist_seperate)
 colnames(track_info)[colnames(track_info) == "1"] <- "id_first_artist"
 track_info$id_first_artist <- gsub('"', "", track_info$id_first_artist)
 
-# Nun nutzen wir die Artist ID, um die 5 Genres zu ermitteln, die laut Spotify
+# Nun nutzen wir die Artist ID, um das 1. Genre zu ermitteln, die laut Spotify
 # am häufigsten mit dem Artist assoziiert werden.
 
 artist_genres <- NULL
 
 for(i in 1:nrow(track_info)){
+  id_first_artist <- as.character(track_info$id_first_artist[i])
   artist_info <- get_artist(track_info$id_first_artist[i])
   genre <- as.character(unlist(artist_info[3]))
-  artist_genres <- rbind(artist_genres, genre)
+  artist_info <- cbind(id_first_artist, genre[1])
+  artist_genres <- rbind(artist_genres, artist_info)
 }
 
 artist_genres <- as.data.frame(artist_genres)
-colnames(artist_genres) <- c("genre1", "genre2", "genre3", "genre4", "genre5")
+colnames(artist_genres) <- c("id_first_artist", "top_genre")
 
 # Zuletzt noch alles in einen Datensatz fassen.
 
 charts <- cbind(charts, track_info[,1:2])
-charts <- cbind(charts, artist_genres)
-rownames(charts) <- NULL
+charts <- cbind(charts, artist_genres[,2])
+colnames(charts)[colnames(charts) == "artist_genres[, 2]"] <- "top_genre"
 
 # Bestimmte features sollten noch gerundet werden.
 
@@ -197,4 +198,4 @@ charts$instrumentalness <- round(charts$instrumentalness, 4)
 
 # Zum Schluss speichern wir alles in einer csv Datei.
 
-write_csv(charts, "./data/charts.csv")
+write.csv(charts, "./data/charts.csv")

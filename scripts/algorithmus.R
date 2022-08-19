@@ -30,9 +30,9 @@ nick_mag <- function(songtitel) {
   auswahl <- spotify_data[spotify_data$title == songtitel, ]
   punkte <- 0
   if(auswahl$tempo >= mein_tempo_minimum) {punkte <- punkte + 1}
-  if(auswahl$genre1 == mein_genre1 |
-     auswahl$genre1 == mein_genre2 |
-     auswahl$genre1 == mein_genre3) {punkte <- punkte + 1}
+  if(auswahl$top_genre == mein_genre1 |
+     auswahl$top_genre == mein_genre2 |
+     auswahl$top_genre == mein_genre3) {punkte <- punkte + 1}
   if(auswahl$danceability >= mein_dance) {punkte <- punkte + 1}
   if(auswahl$loudness >= mein_db) {punkte <- punkte + 1}
   if(auswahl$valence >= mein_value) {punkte <- punkte +1}
