@@ -22,7 +22,7 @@ fuenf * 4
 
 mein_vektor <- c(5, 10, 15, 20, 25) # c steht für concatenate - verknüpfen
 
-mein_vektor * fuenf
+mein_vektor* fuenf
 
 mein_ergebnis <- mein_vektor * fuenf
 
@@ -62,7 +62,7 @@ fuenf >= 4
 
 # Was passiert, wenn wir Vektoren in Booleans nutzen?
 
-mein_vektor <= 5
+mein_vektor >= 6
 
 mean(mein_vektor) == 15
 

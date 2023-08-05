@@ -34,7 +34,7 @@ access_token <- get_spotify_access_token(Sys.getenv("SPOTIFY_CLIENT_ID"),
 
 url <- "https://www.billboard.com/charts/year-end/"
 
-streaming_period <- c(2010:2021)
+streaming_period <- c(2010:2022)
 
 url_end <- "/hot-100-songs"
 
@@ -91,6 +91,7 @@ charts_data$year[801:900] <- 2018
 charts_data$year[901:1000] <- 2019
 charts_data$year[1001:1100] <- 2020
 charts_data$year[1101:1200] <- 2021
+charts_data$year[1201:1300] <- 2022
 
 # Alle unnötigen Symbole und Satzzeichen in den Titel und Artistnamen werden gelöscht.
 
