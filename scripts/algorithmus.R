@@ -51,3 +51,11 @@ spotify_data[spotify_data$title == as.character("Pumped Up Kicks"), ]
 nick_mag("Humble And Kind")
 
 spotify_data[spotify_data$title == as.character("Humble And Kind"), ]
+
+# Aufgabe 1 legt eigene Objekte für euren Geschmack an und formuliert enstprechende Regeln.
+
+# Aufgabe 2 lasst den Algorithmus auch den Artistnamen ausgeben.
+
+# Aufgabe 3 schreibt Ausschlussregeln bzw. Regeln, die Punkte abziehen.
+
+# Aufgabe 4 Formuliert mehr Regeln, sodass wir 10%-Perzentile als Ergebnis bekommen.
