@@ -51,6 +51,9 @@ qplot(as.factor(year), loudness,
       data = spotify_data,
       geom = "boxplot")
 
+foo <- subset(spotify_data, artist == "Justin Timberlake")
+view(foo)
+
 # Statistische Analysen
 
 chisq.test(spotify_data$mode, spotify_data$explicit)
@@ -61,7 +64,7 @@ cor.test(spotify_data$energy, spotify_data$liveness)
 t.test(valence ~ explicit, data = spotify_data)
 
 # Hilfreiche Dateien sind die RStudio Cheatsheets
-# Base: https://www.rstudio.com/wp-content/uploads/2016/05/base-r.pdf
-# GGPlot2: https://www.rstudio.com/wp-content/uploads/2015/05/ggplot2-cheatsheet.pdf
-# RStudio: https://www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf
+# Sammlung von Cheatsheets: https://rstudio.github.io/cheatsheets/
+# GGPlot2: hhttps://rstudio.github.io/cheatsheets/data-visualization.pdf
+# RStudio: https://rstudio.github.io/cheatsheets/rstudio-ide.pdf
 

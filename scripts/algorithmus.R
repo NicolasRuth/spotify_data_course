@@ -18,7 +18,7 @@ mein_dance <- 0.65 # es sollte mindestens eine Tanzbarkeit von 65 haben!
 
 mein_db <- -7
 
-# Ich finde es besser, wenn der Songüberwiegend positiv ist
+# Ich finde es besser, wenn der Song überwiegend positiv ist
 
 mein_value <- 0.50
 
