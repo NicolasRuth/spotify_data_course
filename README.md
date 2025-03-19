@@ -1,7 +1,7 @@
 Spotify Datenanalysekurs
 ================
 Nick Ruth
-3/12/2021
+19/03/2025
 
 ### Einführung in die Spotify-Datenalyse für Musik- und Medienstudierende
 
@@ -36,7 +36,10 @@ Spotify durchgeführt. Dabei werden die [Audio
 Features](https://developer.spotify.com/documentation/web-api/reference/#object-audiofeaturesobject)
 von Songs aus den
 [Jahrescharts](https://www.billboard.com/charts/year-end/) von 2010 bis
-2020 genauer betrachtet.
+2023 genauer betrachtet.
+**Seit November 2024 ist die Spotify-API nicht mehr zugänglich! Die Daten können 
+daher leider nicht mehr aktualisiert werden, die Datensammlung kann nicht mehr 
+durchgeführt werden.**
 
 ``` r
 library(ggplot2)
@@ -97,4 +100,6 @@ Als Bonus für Fortgeschrittene gibt es noch ein Script, in dem die
 Datensammlung geschildert wird. Hier wird zunächst Webscraping mittels
 der **rvest** betrieben, um die Chartlisten zu beziehen. Anschließend
 wird das **SpotifyR** package genutzt, um mit der Spotify API zu
-kommunizieren.
+kommunizieren. **Seit November 2024 ist die Spotify-API nicht mehr zugänglich! 
+Die Daten können daher leider nicht mehr aktualisiert werden, die Datensammlung 
+kann nicht mehr durchgeführt werden.**

@@ -58,7 +58,7 @@ mean(mein_vektor)
 fuenf == 5
 fuenf != 5
 fuenf <= 4
-fuenf >= 4
+fuenf > 5
 
 # Was passiert, wenn wir Vektoren in Booleans nutzen?
 

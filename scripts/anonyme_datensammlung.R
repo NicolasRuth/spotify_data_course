@@ -1,6 +1,10 @@
 # Daten mittels der Spotify Entwickler API (application programming interface),
 # also der Anwendungsschnittstelle beziehen.
 
+# Die API wird seit November 2024 nicht mehr von Spotify angeboten!
+# Die Datensammlung über die API lässt sich somit leider nicht mehr
+# durchführen.
+
 ### Packages ###
 
 # Hierzu benötigen wir einige packages, Software-Erweiterungen für R.

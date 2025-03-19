@@ -51,9 +51,6 @@ qplot(as.factor(year), loudness,
       data = spotify_data,
       geom = "boxplot")
 
-foo <- subset(spotify_data, artist == "Justin Timberlake")
-view(foo)
-
 # Statistische Analysen
 
 chisq.test(spotify_data$mode, spotify_data$explicit)
