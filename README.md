@@ -5,15 +5,11 @@ Nick Ruth
 
 ### Einführung in die Spotify-Datenalyse für Musik- und Medienstudierende
 
-In diesem Projekt sollen Studierende erste Erfahrungen mit der
-Beschaffung von Daten über die Enticklerschnittstelle von Spotify zu
-beziehen, diese wiederum analysieren üben und schließlich eine
-Vorstellung von einem stark vereinfachten Empfehlungsalgorithmus zu
-bekommen.
+In diesem Projekt sollen Studierende erste Erfahrungen mit der Beschaffung von Daten über die Entwicklerschnittstelle von Spotify und mittels Webscraping machen. Mit diesen Daten können Analysen geübt und ein stark vereinfachter Empfehlungsalgorithmus erstellt werden. Welche Software dazu benötigt wird, erkläre ich in diesem [YouTube-Video](https://www.youtube.com/watch?v=CmuLesPlekA).
 
 #### Erste Schritte
 
-Zunächste werden erste Übungen mit der freien Softwareumgebung und
+Zunächst werden erste Übungen mit der freien Softwareumgebung und
 Programmiersprache *R* gemacht.
 
 ``` r
@@ -43,19 +39,26 @@ durchgeführt werden.**
 
 ``` r
 library(ggplot2)
+library(ggthemes)
 spotify_data <- read.csv("./data/charts.csv")
 
-beispiel_dauer_pro_jahr <- ggplot(data = spotify_data,
-                                  aes(x = as.factor(year), 
-                                      y = duration_ms/1000))
+beispiel_dauerprojahr_plot <- ggplot(data = spotify_data,
+                                     aes(x = as.factor(year),
+                                         y = duration_ms/1000)) +
+  geom_boxplot(aes(fill = factor(year)), 
+               alpha = 0.8,           
+               outlier.alpha = 0.3) +  
+  scale_fill_tableau("Tableau 20",     
+                    name = "Jahr") +
+  labs(title = "Dauer der Songs pro Jahr",
+       subtitle = "Boxplot-Darstellung der Songlängen",
+       x = "Jahr",
+       y = "Dauer (in Sekunden)") +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "right",
+        plot.title = element_text(face = "bold"))
 
-beispiel_dauer_pro_jahr + 
-  geom_boxplot(aes(fill = factor(year))) +
-  ggtitle("Dauer der Songs pro Jahr") +
-  scale_fill_brewer(palette = "Spectral",
-                    name = "Jahre") +
-  xlab("Jahre") +
-  ylab("Dauer in Sekunden")
+beispiel_dauerprojahr_plot
 ```
 
 ![](README_files/figure-gfm/analyse-1.png)<!-- -->
@@ -100,6 +103,6 @@ Als Bonus für Fortgeschrittene gibt es noch ein Script, in dem die
 Datensammlung geschildert wird. Hier wird zunächst Webscraping mittels
 der **rvest** betrieben, um die Chartlisten zu beziehen. Anschließend
 wird das **SpotifyR** package genutzt, um mit der Spotify API zu
-kommunizieren. **Seit November 2024 ist die Spotify-API nicht mehr zugänglich! 
-Die Daten können daher leider nicht mehr aktualisiert werden, die Datensammlung 
-kann nicht mehr durchgeführt werden.**
+kommunizieren. **Die kostenfreie Nutzung der Spotify API wurde im November 2024 
+eingestellt. Die Daten können daher leider nicht mehr aktualisiert und die Datensammlung 
+nicht mehr durchgeführt werden.**
